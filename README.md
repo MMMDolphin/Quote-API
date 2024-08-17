@@ -2,6 +2,7 @@
 ## Developed by Macro Monetary Managament ©
 
 This is a simple RESTful API built using Node.js and Express. It provides random bitcoin quotes and also allows users to add new quotes.
+
 ![image](https://github.com/user-attachments/assets/f7457fcf-279b-4ad9-8a4e-32e2da55fd98)
 
 
