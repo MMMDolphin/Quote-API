@@ -1,4 +1,4 @@
-# Quote-App
+# Quote-API
 ## Developed by Macro Monetary Managament ©
 
 This is a simple RESTful API built using Node.js and Express. It provides random bitcoin quotes and also allows users to add new quotes.
