@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit a Quote</title>
+    <link rel="stylesheet" href="styles.css">
+    <header>
+        <div class="logo-container">
+            <img src="https://miro.medium.com/v2/resize:fit:800/1*7B3LcW3rYEETBmaDdLxZDQ.gif" alt="Logo" class="logo">
+            <h1 class="MMMHeader">Powered by MMM</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="get-quote.html">Get Quote</a></li>
+                <li><a href="create-quote.html">Create Quote</a></li>
+                <li><a href="http://saitami.bg">Get Website</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+</head>
+
+<body>
+<h1><div class="container smallerContainer">Submit a Quote</div></h1>
+<div class="container">
+    <form id="quoteForm">
+        <label for="quote">Quote:</label>
+        <input type="text" id="quote" name="quote" required><br><br>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div id="response"></div>
+
+<script>
+    document.getElementById('quoteForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const quote = document.getElementById('quote').value;
+        const author = document.getElementById('author').value;
+
+        fetch('/api/quotes/add-new-quote', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ quote, author }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                const responseDiv = document.getElementById('response');
+                if (data.error) {
+                    responseDiv.textContent = `Error: ${data.error}`;
+                    responseDiv.style.color = 'red';
+                } else {
+                    responseDiv.textContent = 'Quote added successfully!';
+                    responseDiv.style.color = 'green';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const responseDiv = document.getElementById('response');
+                responseDiv.textContent = 'An error occurred while submitting the quote.';
+                responseDiv.style.color = 'red';
+            });
+    });
+</script>
+</body>
+
+</html>

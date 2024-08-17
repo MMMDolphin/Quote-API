@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes API</title>
+    <link rel="stylesheet" href="styles.css">
+    <header>
+        <div class="logo-container">
+            <img src="https://miro.medium.com/v2/resize:fit:800/1*7B3LcW3rYEETBmaDdLxZDQ.gif" alt="Logo" class="logo">
+            <h1 class="MMMHeader">Powered by MMM</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="get-quote.html">Get Quote</a></li>
+                <li><a href="create-quote.html">Create Quote</a></li>
+                <li><a href="http://saitami.bg">Get Website</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+</head>
+<body>
+<div class="container containerMoney">
+    <h1>Welcome to the Quotes API</h1>
+    <button id="getQuoteBtn">Get Quote</button>
+</div>
+<br>
+<div class="container biggerContainer containerMoney">
+    <p id="quote">Click the button to get a random quote!</p>
+    <button class="button bottomButton"><a href="create-quote.html">Create your Quote</a></button>
+</div>
+
+<script>
+    document.getElementById('getQuoteBtn').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/api/quotes');
+            const quote = await response.json();
+            // Assuming your quote object has 'text' and 'author' properties
+            document.getElementById('quote').innerText = `"${quote.quote}" - ${quote.author}`;
+        } catch (error) {
+            document.getElementById('quote').innerText = 'Failed to fetch a quote. Please try again.';
+        }
+    });
+</script>
+</body>
+</html>
