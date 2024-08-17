@@ -7,8 +7,8 @@ This is a simple RESTful API built using Node.js and Express. It provides random
 
 ## Features
 
-Get a Random Quote: Retrieve a random quote from the preloaded list.
-Add a New Quote: Add a new quote to the collection by providing a quote and author.
+### Get a Random Quote: Retrieve a random quote from the preloaded list.
+### Add a New Quote: Add a new quote to the collection by providing a quote and author.
 
 ![image](https://github.com/user-attachments/assets/399b57f9-2f12-49b1-8f2f-1343758d700b)
 
